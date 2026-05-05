@@ -19,7 +19,7 @@ const generateRandomRoomId = () => {
     return result;
 };
 const JoinRoom = ({ image, heading }) => {
-    console.log(process.env.React_App_WEBSOCKET);
+    console.log(process.env.REACT_APP_WEBSOCKET);
     const [roomId, setRoomId] = useState(generateRandomRoomId());
     const [isJoining,setisJoining] = useState(false)
     const navigate = useNavigate();
@@ -36,7 +36,7 @@ const JoinRoom = ({ image, heading }) => {
             messages:[],
             contents:"",
         }
-        const response = await fetch(`${process.env.React_App_BACKEND}/api/room/`, {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/room/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,21 +64,59 @@ const JoinRoom = ({ image, heading }) => {
         }
 
     }
-    async function handlebtnJoinClick() {
-        if(isJoining===true){
+    // async function handlebtnJoinClick() {
+    //     if(isJoining===true){
            
-            const roomData = await getRoomFromDB(roomId); 
-            if(!roomData) {
-                toast.error("you are not allowed to join this room or room is not exists")
-                return 
+    //         const roomData = await getRoomFromDB(roomId); 
+    //         if(!roomData) {
+    //             toast.error("you are not allowed to join this room or room is not exists")
+    //             return 
 
-            } // Fetch room data from DB
-            dispatch({ type: 'SET_ROOM', payload: roomData });  // Set the room context
-            navigate(`/features`);
+    //         } // Fetch room data from DB
+    //         dispatch({ type: 'SET_ROOM', payload: roomData });  // Set the room context
+    //         navigate(`/features`);
             
-        }
+    //     }
    
+    // }
+
+
+async function handlebtnJoinClick() {
+  if (!isJoining) return;
+
+  // 1. JOIN ROOM FIRST (IMPORTANT)
+  const joinRes = await fetch(
+    `${process.env.REACT_APP_BACKEND}/api/room/${roomId}/join`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
     }
+  );
+
+  const joinData = await joinRes.json();
+
+  if (!joinRes.ok) {
+    toast.error(joinData.error || "Join failed");
+    return;
+  }
+
+  // 2. NOW FETCH ROOM SAFELY
+  const roomData = await getRoomFromDB(roomId);
+
+  if (!roomData) {
+    toast.error("Room fetch failed");
+    return;
+  }
+
+  dispatch({ type: "SET_ROOM", payload: roomData });
+  navigate("/features");
+}
+
+
+
     function handleInputRoomId(event)
     {
         setRoomId(event.target.value);

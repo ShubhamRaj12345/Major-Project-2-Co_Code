@@ -27,13 +27,15 @@ export default function SignUp() {
             return;
         }
         try {
-            const response = await fetch(`${process.env.React_App_BACKEND}/api/user/signup`, {
+           
+            const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/user/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(inputUser),
             });
+            console.log(response);
             const responseData = await response.json();
             console.log(responseData);
             if (response.ok) {

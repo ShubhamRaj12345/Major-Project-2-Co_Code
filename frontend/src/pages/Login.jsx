@@ -20,7 +20,7 @@ export default function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch(`${process.env.React_App_BACKEND}/api/user/login`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/user/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

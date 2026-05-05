@@ -6,7 +6,7 @@ export const getSocket = () => {
  
   return new Promise((resolve, reject) => {
     if (!socket) {
-      socket = io(`${process.env.React_App_WEBSOCKET}`); 
+      socket = io(`${process.env.REACT_APP_WEBSOCKET}`); 
 
       console.log('Socket initialized, waiting for connection...');
       socket.on('connect', () => {

@@ -34,7 +34,7 @@ const Features = () => {
             navigate('/room');
             return;
         }
-        socketRef.current = io(`${process.env.React_App_WEBSOCKET}`)
+        socketRef.current = io(`${process.env.REACT_APP_WEBSOCKET}`)
         console.log(socketRef.current)
         socketRef.current.emit("join-room", roomContext.roomState, authContext.loggedInUser?.username)
         socketRef.current.on("status-sync", (onlinemap) => {
@@ -104,7 +104,7 @@ const Features = () => {
         formData.append('roomId', roomContext.roomState.roomId);
 
         try {
-            const response = await fetch(`${process.env.React_App_WEBSOCKET}/upload`, {
+            const response = await fetch(`${process.env.REACT_APP_WEBSOCKET}/upload`, {
                 method: 'POST',
                 body: formData
             });
@@ -128,7 +128,7 @@ const Features = () => {
         }
 
         try {
-            const response = await fetch(`${process.env.React_App_BACKEND}/api/room/${roomContext.roomState.roomId}`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/room/${roomContext.roomState.roomId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -159,7 +159,7 @@ const Features = () => {
         // check user is in db or not 
         try {
 
-            const response = await fetch(`${process.env.React_App_BACKEND}/api/user/${participantEmail}`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/user/${participantEmail}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -215,7 +215,7 @@ const Features = () => {
         // put reques for updating the room 
         try {
 
-            const response = await fetch(`${process.env.React_App_BACKEND}/api/room/${roomId}`, {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/room/${roomId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -283,46 +283,47 @@ const Features = () => {
         console.log(language);
     };
 
-    const runCode = async () => {
+const runCode = async () => {
 
-        console.log('Running code');
-        console.log('code : ', codeRef.current);
+    console.log('code : ', codeRef.current);
+    console.log('language : ', language);
 
-        if (!codeRef.current) {
-            toast.error("No code to execute.");
-            return;
-        }
+    if (!codeRef.current) {
+        toast.error("No code to execute.");
+        return;
+    }
 
-        try {
-            const response = await axios.post('https://emkc.org/api/v2/piston/execute', {
-                language: language.language,
-                version: language.version,
-                files: [
-                    {
-                        content: codeRef.current,
-                        // content: roomContext.roomState.contents,
-                    }
-                ],
-                stdin: codeInput,
-            });
-
-            const result = response.data;
-            console.log('Execution Result:', result);
-
-            if (result.run.stderr) {
-                toast.error(`Error`);
-                setOutput(result.run.stderr); // Set the error in the output
-            } else {
-                toast.success('Code executed successfully');
-                setOutput(result.run.stdout); // Set the output in state
+    try {
+        const response = await axios.post(
+            "http://localhost:2000/run",
+            {
+                code: codeRef.current,
+                language: language?.language || "javascript",
+                 input: codeInput ? codeInput + "\n" : "\n"
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                }
             }
-        } catch (err) {
-            console.error(err);
-            toast.error('Failed to execute code');
-            setOutput('Failed to execute code'); // Display error in output
-        }
-    };
+        );
 
+        const result = response.data;
+
+        if (result.success) {
+            setOutput(result.output?.trim() || "No output");
+            toast.success("Code executed successfully");
+        } else {
+            setOutput(result.error || "Error");
+            toast.error("Error executing code");
+        }
+
+    } catch (err) {
+        console.error(err);
+        setOutput("Failed to execute code");
+        toast.error("Server error");
+    }
+};
 
     const renderFeatureContent = () => {
         switch (selectedFeature) {

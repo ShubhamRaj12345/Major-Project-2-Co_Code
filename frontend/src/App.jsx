@@ -9,6 +9,7 @@ import Login from './pages/Login.jsx';
 import Features from './pages/Features.jsx';
 import Logout from './pages/Logout.jsx';
 import { RoomProvider } from './context/roomContext/roomContext.jsx';
+import Contact from './components/Contact.jsx';
 function App() {
   return (
 
@@ -33,6 +34,7 @@ function App() {
 
 
         <Route path="/logout" element={<Logout />} />
+         <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
 

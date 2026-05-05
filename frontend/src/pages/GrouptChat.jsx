@@ -4,7 +4,7 @@ import { io } from "socket.io-client";
 import "./GroupChat.css";
 
 // const socket = io("http://localhost:5000");
-const socket = io(`${process.env.React_App_WEBSOCKET}`)
+const socket = io(`${process.env.REACT_APP_WEBSOCKET}`)
 
 const GroupChat = ({ roomId, username }) => {
   const [message, setMessage] = useState("");

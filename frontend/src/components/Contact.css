@@ -1,0 +1,25 @@
+.contact-container {
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+  
+  border: 1px solid #ccc;
+}
+
+.contact-form {
+  width: 180px;
+  margin: auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 4px;
+  margin: 4px 0;
+  font-size: 12px;
+}
+
+.contact-form button {
+  padding: 6px;
+  font-size: 12px;
+}

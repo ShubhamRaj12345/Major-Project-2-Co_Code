@@ -9,6 +9,12 @@ const cors = require("cors");
 require("dotenv").config();
 const app = express();
 
+
+
+const dns = require('dns');
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+
+
 const PORT = process.env.PORT;
 
 app.use(
@@ -27,6 +33,8 @@ app.use("/api/Flushroom", webSocketRouter);
 app.use("/api/room", auth);
 app.use("/api/room", roomRouter);
 app.use(errHandler);
+
+
 
 const connect = async () => {
    console.log(process.env.MONGO)

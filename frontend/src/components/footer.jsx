@@ -3,6 +3,7 @@ import './Footer.css'; // Import your CSS file for styling
 
 const Footer = () => {
     return (
+     
         <footer className="footer">
             <div className="footer-section about">
                 <h2>About Us</h2>

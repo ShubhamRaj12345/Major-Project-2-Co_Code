@@ -3,7 +3,7 @@ async function getRoomFromDB(roomId)
 {
     try{
     
-    const response = await fetch(`${process.env.React_App_BACKEND}/api/room/${roomId}`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND}/api/room/${roomId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
