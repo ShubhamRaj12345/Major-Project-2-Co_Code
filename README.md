@@ -4,270 +4,134 @@
 
 The Real-Time Collaborative Coding Platform is a full-stack web application designed to enable developers, students, educators, and professional teams to collaborate on code in real time.
 
-This platform provides a seamless environment where multiple users can:
+A simple full-stack real-time collaborative coding platform where multiple users can join a room and code together in real time.
 
-Write code together simultaneously
-Communicate instantly
-Improve learning and development productivity
-Practice pair programming remotely
-
-The project focuses on delivering a fast, scalable, and interactive collaborative coding experience using modern web technologies.
-
-✨ Key Features
-🔴 Real-Time Code Synchronization
-Multiple users can edit code simultaneously
-Instant live updates using Socket.IO
-Low latency communication
-👨‍💻 Collaborative Coding Rooms
-Create private coding rooms
-Join existing sessions using Room ID
-Team-based coding environment
-💬 Integrated Real-Time Chat
-Live communication between participants
-Instant messaging inside coding sessions
-🧠 Smart Code Editor
-Syntax highlighting
-Multi-language support
-Developer-friendly interface
-🔐 Secure Authentication
-JWT-based authentication
-Protected APIs and routes
-Secure login and registration
-📱 Responsive User Interface
-Fully responsive design
-Optimized for desktop and mobile devices
-⚡ Scalable Backend Architecture
-RESTful APIs
-Modular backend structure
-Efficient socket communication
-🛠️ Tech Stack
+Features
+Real-time code collaboration
+Create and join coding rooms
+Live code synchronization
+Real-time chat system
+Secure authentication
+Responsive UI
+Tech Stack
 Frontend
 React.js
-HTML5
-CSS3
 Tailwind CSS
 JavaScript
-Axios
 Backend
 Node.js
 Express.js
 Socket.IO
-JWT Authentication
-bcrypt.js
 Database
 MongoDB
-Mongoose
-🏗️ System Architecture
-Users
-   ↓
-Frontend (React.js)
-   ↓
-REST APIs + Socket.IO
-   ↓
-Backend Server (Node.js + Express.js)
-   ↓
-MongoDB Database
-📂 Project Structure
-Real-Time-Collaborative-Coding/
+Project Structure
+project-folder/
 │
-├── client/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── context/
-│   │   ├── services/
-│   │   ├── App.js
-│   │   └── main.js
-│   │
-│   └── package.json
-│
-├── server/
-│   ├── config/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── sockets/
-│   ├── server.js
-│   └── package.json
-│
-├── screenshots/
+├── client/      # Frontend
+├── server/      # Backend
 ├── README.md
 └── .env
-⚙️ Installation Guide
-1️⃣ Clone Repository
-git clone https://github.com/your-username/real-time-collaborative-coding.git
-2️⃣ Navigate to Project Directory
-cd real-time-collaborative-coding
-3️⃣ Install Frontend Dependencies
+How It Works
+User creates a room
+Other users join using Room ID
+Users write code together
+Code updates appear instantly for everyone
+Users can communicate through chat
+Installation Guide
+Step 1: Clone Repository
+git clone https://github.com/your-username/project-name.git
+Step 2: Open Project Folder
+cd project-name
+Install Frontend
 cd client
 npm install
-4️⃣ Install Backend Dependencies
-cd ../server
-npm install
-🔐 Environment Variables
+Install Backend
 
-Create a .env file inside the server directory:
+Open another terminal:
+
+cd server
+npm install
+Environment Variables
+
+Create .env file inside server folder:
 
 PORT=5000
 
-MONGO_URI=your_mongodb_connection_string
+MONGO_URI=your_mongodb_url
 
 JWT_SECRET=your_secret_key
-▶️ Running the Application
-Start Backend Server
+Run Backend
 cd server
 npm start
 
-Backend will run on:
+Backend runs on:
 
 http://localhost:5000
-Start Frontend
+Run Frontend
 
 Open another terminal:
 
 cd client
 npm run dev
 
-Frontend will run on:
+Frontend runs on:
 
 http://localhost:5173
-📸 Screenshots
-🏠 Home Page
-Add Screenshot Here
-👨‍💻 Collaborative Editor
-Add Screenshot Here
-💬 Chat Interface
-Add Screenshot Here
-🔄 Application Workflow
-User registers/login
-Creates or joins a coding room
-Shares Room ID with collaborators
-Users code together in real time
-Code changes synchronize instantly
-Team members communicate using live chat
-🔌 API Endpoints
-Authentication APIs
-Method	Endpoint	Description
-POST	/api/auth/register	Register User
-POST	/api/auth/login	Login User
-Room APIs
-Method	Endpoint	Description
-POST	/api/room/create	Create Room
-POST	/api/room/join	Join Room
-⚡ Socket.IO Events
-Event	Purpose
-join-room	Join collaborative room
-code-change	Synchronize code
-send-message	Send chat message
-receive-message	Receive chat message
-disconnect	Handle user disconnect
-🗄️ Database Schema
-User Schema
-{
-  username: String,
-  email: String,
-  password: String
-}
-Room Schema
-{
-  roomId: String,
-  users: Array,
-  createdAt: Date
-}
-🔒 Security Features
-JWT Authentication
-Password Encryption using bcrypt
-Protected API Routes
-Input Validation
-Secure Socket Communication
-Error Handling Middleware
-🚧 Challenges Faced
+How to Run on Another System
+Requirements
 
-During development, the following challenges were addressed:
+Install these first:
 
-Real-time synchronization management
-Handling multiple concurrent socket connections
-Preventing editor conflicts
-Optimizing backend performance
-Designing scalable architecture
+Node.js
+MongoDB
+Git
+Steps
+1. Copy Project
 
-These challenges improved practical understanding of:
+You can:
 
-WebSockets
-Real-time systems
-Backend optimization
-Full-stack architecture
-🔮 Future Enhancements
-Planned Features
-🎥 Video Calling Integration
-🧪 Online Code Execution
-🤖 AI-Based Code Suggestions
-📄 Collaborative Notes
-🌍 Multi-Language Support
-☁️ Cloud Deployment
-📱 Mobile Application
-👨‍💻 Team Members
-Name	Role
-Abhishek Kumar	Frontend Development
-Vikas Kumar Roy	Frontend Development
-Shubham Raj	Backend Development
-Vikas Kumar Yadav	Database Connectivity & Backend
-📚 Learning Outcomes
+Clone from GitHub
+OR
+Copy project folder using pendrive/zip
+2. Install Dependencies
 
-This project helped the team gain hands-on experience in:
+Inside both folders:
 
-MERN Stack Development
-Real-Time Communication
-WebSocket Implementation
-Backend API Development
-Authentication Systems
-Database Design
-Team Collaboration
-Scalable Application Development
-🤝 Contributing
+npm install
 
-Contributions are welcome!
+Run in:
 
-Contribution Steps
-# Fork the repository
+client
+server
+3. Add .env File
 
-# Create new branch
-git checkout -b feature-name
+Inside server folder:
 
-# Commit changes
-git commit -m "Added new feature"
+PORT=5000
+MONGO_URI=your_mongodb_url
+JWT_SECRET=your_secret_key
+4. Start Backend
+npm start
+5. Start Frontend
+npm run dev
+Screenshots
 
-# Push changes
-git push origin feature-name
+Add screenshots inside:
 
-Then create a Pull Request 🚀
+screenshots/
 
-📜 License
+Example:
 
-This project is licensed under the MIT License.
-
-🌟 Acknowledgements
-
-Special thanks to:
-
-React.js Documentation
-Socket.IO Documentation
-MongoDB Documentation
-Node.js Community
-Open Source Contributors
-📞 Contact
-Project Team
-
-📧 your-email@example.com
-
-🌐 GitHub: https://github.com/your-username
-
-⭐ Support
-
-If you found this project helpful, please give it a ⭐ on GitHub!
-
-🚀 Final Note
-
-The Real-Time Collaborative Coding Platform demonstrates the practical implementation of modern real-time collaborative systems using MERN Stack and WebSocket technologies. The project focuses on improving coding productivity, collaborative learning, and remote teamwork experiences in both educational and professional environments.
+screenshots/home.png
+screenshots/editor.png
+Future Improvements
+Video calling
+Online compiler
+AI code suggestions
+File sharing
+Screen sharing
+Team Members
+Abhishek Kumar – Frontend
+Vikas Kumar Roy – Frontend
+Shubham Raj – Backend
+Vikas Kumar Yadav – Backend & Database
