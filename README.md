@@ -1,6 +1,6 @@
-# Co_Code — Real-Time Collaborative Code Editor
+# Real-Time Collaborative Coding Platform for Learning and Professional Productivity
 
-Co_Code is a full-stack, real-time collaborative coding platform where developers can create or join rooms, write and execute code together, chat live, and share room access via email.
+Real-Time Collaborative Coding Platform for Learning and Professional Productivity is a full-stack, real-time collaborative coding platform where developers can create or join rooms, write and execute code together, chat live, and share room access via email.
 
 ---
 
